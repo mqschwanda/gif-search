@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Giphy Search</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="assets/css/style.css">
+ 	</head>
+ 	<body>
+<!--     <img id="header-img" src="assets/images/giphy_text.gif"> -->
+    <nav id="nav-height" class="navbar navbar-default navbar-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><img alt="Giphy Logo" src="assets/images/giphy_logo3.gif"></a>
+        </div>
+        <form class="navbar-form text-center" role="search">
+          <div class="form-group">
+            <input id="search-input" type="text" class="form-control" placeholder="Search">
+            <button id="search-btn" type="button" class="btn btn-default navbar-btn">Search</button>
+            <label for="rating"></label>
+             <!-- Limit Rating: -->
+            <select class="form-control minimal" id="rating-input" title="Limit Rating">
+              <optgroup label="Rating:"></optgroup>
+              <option id="hide-rating">Rating</option>
+              <option>G</option>
+              <option>PG</option>
+              <option>PG-13</option>
+              <option>R</option>
+            </select>
+            <label for="limit"></label>
+            <!-- Results Per Page: -->
+            <select class="form-control minimal" id="limit-input" title="Results per page">
+              <optgroup  label="Results per Page:"></optgroup>
+              <option id="hide-limit">Results per Page</option>
+              <option>10</option>
+              <option>20</option>
+              <option>40</option>
+              <option>80</option>
+              <option>100</option>
+            </select>
+          </div>
+        </form>
+        <div id="print-history">
+        </div>
+      </div>
+    </nav>
+    
+    <div class="container-fluid">
+    <div class="row">
+    </div>
+    <div id="print-gif" class="row">
+      <h1 class="text-center">^ SEARCH GIPHY ^</h1>
+    </div>
+    <div id="print-pagination">
+    </div>
+    </div>
+		<footer class="footer">
+		  <div class="container">
+		   	<p class="text-muted text-center">&copy; Copyright 2016 Mark Q Schwanda</p>
+			</div>
+		</footer>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+    <script src="assets/javascript/javascript.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	</body>
+</html>
+
