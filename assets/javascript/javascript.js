@@ -1,6 +1,7 @@
 var search, rating, limit, firstLimit, currentPg, previousSearch, hiddenRating, hiddenLimit;
 var startCount = 0;
 var firstSearch = true;
+var history = [];
 
 function printPagination(pgAmount){
   var nav, ul, li, a, span, btnNum, middleCount, middleBtn;
@@ -83,19 +84,40 @@ function printPagination(pgAmount){
 
 function printGifs(results){
   $('#print-gif').empty();
+  var panel = $('<div>');
+  panel.addClass('panel row-eq-height')
+  var col1 = $('<div>');
+  col1.addClass('col-xs-4')
+  var col2 = $('<div>');
+  col2.addClass('col-xs-4')
+  var col3 = $('<div>');
+  col3.addClass('col-xs-4')
+  var col1, col2, col3
+  var colCount = 0;
   for (var i = startCount; i < results.length; i++) {
-    var div = $('<div>');
-    div.addClass('col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2');
-    var a = $('<a>');
-    a.addClass('thumbnail row-eq-height');
+    colCount++;
     var img = $('<img>');
-    img.addClass('img-responsive vertical-align gif');
+    img.addClass('img-responsive gif');
     img.attr('src', results[i].images.fixed_height_still.url);
     img.data('still', results[i].images.fixed_height_still.url);
     img.data('animate', results[i].images.fixed_height.url);
-    div.append(a.append(img));
-    $('#print-gif').append(div);
-	}
+    if (colCount == 1) {
+      col1.append(img);
+    }
+    if (colCount == 2) {
+      col2.append(img);
+    }
+    if (colCount == 3) {
+      col3.append(img);
+    }
+    if (colCount == 3) {
+      colCount = 0;
+    }
+  }
+  panel.append(col1);
+  panel.append(col2);
+  panel.append(col3);
+  $('#print-gif').append(panel);
 }
 
 function printHistory(){
@@ -119,7 +141,7 @@ function printHistory(){
     $('#print-history').append(ul);
     firstSearch = false;
   } else {
-    $('#print-history-else').prepend(li);
+    $('#print-history-else').append(li);
     $('#'+previousSearch).removeClass('active');
   }
   previousSearch = search;
