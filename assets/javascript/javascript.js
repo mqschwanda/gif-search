@@ -1,7 +1,7 @@
-var search, rating, limit, firstLimit, currentPg, previousSearch, hiddenRating, hiddenLimit;
+var search, rating, limit, firstLimit, currentPg, previousSearch, hiddenRating, hiddenLimit, history;
 var startCount = 0;
 var firstSearch = true;
-var history = [];
+var historyArray = [];
 
 function printPagination(pgAmount){
   var nav, ul, li, a, span, btnNum, middleCount, middleBtn;
@@ -79,7 +79,7 @@ function printPagination(pgAmount){
   span.html('&raquo;');
   ul.append(li.append(a.append(span)));
   // print dynamic content
-  $('#print-pagination').append(nav);
+  $('#print-gif').append(nav);
 }
 
 function printGifs(results){
@@ -120,7 +120,21 @@ function printGifs(results){
   $('#print-gif').append(panel);
 }
 
+function noData(){
+  $('#print-gif').empty();
+  var h1 = $('<h1>');
+  h1.addClass('text-center zero-results');
+  h1.html("YOU FAILED!");
+  var h3 = $('<h1>');
+  h3.addClass('text-center zero-results');
+  h3.html("Your search returned zero results");
+  $('#print-gif').append(h1);
+  $('#print-gif').append(h3);
+}
+
 function printHistory(){
+  
+
   // remove old history if duplicate search is made
   $('#'+search).remove();
   var ul = $('<ul>');
@@ -154,11 +168,16 @@ function getGifs() {
           method: 'GET'
       })
       .done(function(response) {
+        console.log(response);
           var results = response.data;
-          printGifs(results);
+          if (response.data.length > 0) {
+            printHistory();
+            printGifs(results);
+            printPagination(5);
+          } else {
+            noData();
+          }
       });
-      printPagination(5);
-      printHistory();
 };
 
 $('#rating-input').on('click', function(){
@@ -179,15 +198,21 @@ $('#search-btn').on('click', function(){
   previousSearch = search;
 	search = $('#search-input').val().trim();
   rating = $('#rating-input').val();
+  limit = $('#limit-input').val();
   // set variables if no selection was made
   if (rating == 'Rating') {
     rating = 'R';
   }
-  limit = $('#limit-input').val();
   if (limit == 'Results per Page') {
     limit = 12;
   }
+  var history = {'input': input, 'rating': rating, 'limit': limit};
+  historyArray.push(history);
   firstLimit = parseInt(limit);
+  console.log("History Array:");
+  console.log(historyArray);
+  console.log("History:");
+  console.log(history);
   currentPg = 1;
   getGifs();
 });

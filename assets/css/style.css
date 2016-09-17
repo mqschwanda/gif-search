@@ -16,7 +16,7 @@
   bottom: -1px;
 }
 #print-gif {
-  margin-top: 20px;
+  margin-top: 100px;
 }
 .nav-hisxtory {
   bottom: -1px;
@@ -24,6 +24,8 @@
 #print-history>ul>li {
   bottom: 1px;
 }
+
+
 
 /* General */
   body {
@@ -129,7 +131,6 @@
     border: 1px solid #888888;
     border-bottom: 0px;
     padding-bottom: 9px;
-/*    border-bottom: 1px solid #777777;*/
   }
   /* active tab color */
   .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
@@ -155,7 +156,6 @@
   .panel {
     margin-bottom: 0;
     border-color: #888;
-    margin-top: 100px;
   }
   .thumbnail {
   }
