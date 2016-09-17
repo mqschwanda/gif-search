@@ -1,7 +1,8 @@
 var search, rating, limit, firstLimit, currentPg, previousSearch, hiddenRating, hiddenLimit, history;
 var startCount = 0;
 var firstSearch = true;
-var historyArray = [];
+var rating = "R";
+var limit = 20;
 
 function printPagination(pgAmount){
   var nav, ul, li, a, span, btnNum, middleCount, middleBtn;
@@ -133,13 +134,11 @@ function noData(){
 }
 
 function printHistory(){
-  
-
   // remove old history if duplicate search is made
   $('#'+search).remove();
   var ul = $('<ul>');
   ul.attr('id', 'print-history-else');
-  ul.addClass('nav nav-tabs')
+  ul.addClass('nav nav-tabs nav-justified ')
   var li = $('<li>');
   li.addClass('active');
   li.attr('id', search);
@@ -159,6 +158,13 @@ function printHistory(){
     $('#'+previousSearch).removeClass('active');
   }
   previousSearch = search;
+}
+
+function clearHistory(){
+  // remove old history if duplicate search is made
+  var activeTab = $("#"+search);
+  $('#print-history-else').empty();
+  $('#print-history-else').append(activeTab);
 }
 
 function getGifs() {
@@ -195,26 +201,19 @@ $('#limit-input').on('click', function(){
 });
 
 $('#search-btn').on('click', function(){
-  previousSearch = search;
-	search = $('#search-input').val().trim();
-  rating = $('#rating-input').val();
-  limit = $('#limit-input').val();
-  // set variables if no selection was made
-  if (rating == 'Rating') {
-    rating = 'R';
+  if (search != $('#search-input').val().trim()){
+    previousSearch = search;
+    search = $('#search-input').val().trim();
+    // rating = $('#rating-input').val();
+    // limit = $('#limit-input').val();
+    firstLimit = parseInt(limit);
+    currentPg = 1;
+    getGifs();
   }
-  if (limit == 'Results per Page') {
-    limit = 12;
-  }
-  var history = {'input': input, 'rating': rating, 'limit': limit};
-  historyArray.push(history);
-  firstLimit = parseInt(limit);
-  console.log("History Array:");
-  console.log(historyArray);
-  console.log("History:");
-  console.log(history);
-  currentPg = 1;
-  getGifs();
+});
+
+$('#clear-history-btn').on('click', function(){
+  clearHistory();
 });
 
 $('body').on('click', '.pagination-btn', function(){
@@ -259,4 +258,14 @@ $('body').on('click', '.nav-history', function(){
         $('#' + $(this).data('input')).addClass('active');
         $('#' + previousSearch).removeClass('active');
         getGifs();
+});
+
+$('.rating').on('click', function(){
+    rating = $(this).data('rating');
+    console.log(rating);
+});
+
+$('.limit').on('click', function(){
+    limit = $(this).data('limit');
+    console.log(limit);
 });

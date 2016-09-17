@@ -12,43 +12,54 @@
  	<body>
 <!--     <img id="header-img" src="assets/images/giphy_text.gif"> -->
     <nav id="nav-height" class="navbar navbar-default navbar-fixed-top navbar-inverse">
-      <div class="container">
+      <div class="container navbar-inner">
         <div class="navbar-header">
           <a class="navbar-brand" href="#"><img alt="Giphy Logo" src="assets/images/giphy_logo.gif"></a>
         </div>
-        <form class="navbar-form text-center" role="search">
-          <div class="form-group">
-            <input id="search-input" type="text" class="form-control" placeholder="Search">
-            <button id="search-btn" type="button" class="btn btn-default navbar-btn">Search</button>
-            <label for="rating"></label>
-             <!-- Limit Rating: -->
-            <select class="form-control minimal" id="rating-input" title="Limit Rating">
-              <optgroup label="Rating:"></optgroup>
-              <option id="hide-rating">Rating</option>
-              <option>G</option>
-              <option>PG</option>
-              <option>PG-13</option>
-              <option>R</option>
-            </select>
-            <label for="limit"></label>
-            <!-- Results Per Page: -->
-            <select class="form-control minimal" id="limit-input" title="Results per page">
-              <optgroup  label="Results per Page:"></optgroup>
-              <option id="hide-limit">Results per Page</option>
-              <option>10</option>
-              <option>20</option>
-              <option>40</option>
-              <option>80</option>
-              <option>100</option>
-            </select>
-            <button id="clear-history-btn" type="button" class="btn btn-default navbar-btn">Clear History</button>
+          <div class="btn-group-vertical btn-group-search">
+            <div class="">
+              <input id="search-input" type="text" class="" placeholder="Search">
+            </div>
+            <div class="row">
+              <div class="btn-group search-btn-group">
+                <button id="search-btn" type="button" class="btn btn-default navbar-btn search-btn-group">Search</button>
+                <button id="clear-history-btn" type="button" class="btn btn-default navbar-btn search-btn-group">Clear History</button>
+              </div>
+            </div>
           </div>
-        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="">
+            <div class="dropdown">
+              <button class="btn btn-default navbar-btn dropdown-toggle" type="button" data-toggle="dropdown">Results<span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a class="limit" data-limit="10" href="#">10</a></li>
+                <li><a class="limit" data-limit="20" href="#">20</a></li>
+                <li><a class="limit" data-limit="40" href="#">40</a></li>
+                <li><a class="limit" data-limit="80" href="#">80</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="">
+            <div class="dropdown">
+              <button class="btn btn-default navbar-btn dropdown-toggle" type="button" data-toggle="dropdown">Rating<span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a class="rating" data-rating="G" href="#">G</a></li>
+                <li><a class="rating" data-rating="PG" href="#">PG</a></li>
+                <li><a class="rating" data-rating="PG-13" href="#">PG-13</a></li>
+                <li><a class="rating" data-rating="R" href="#">R</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <div class="btn-group">
+            <button type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-play"></span></button>
+            <button type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-pause"></span></button>
+          </div>
+        </ul>
         <div id="print-history">
         </div>
       </div>
     </nav>
-    
     <div class="container-fluid">
     <div class="row">
     </div>
